@@ -759,7 +759,7 @@
       <span class="status-dot" id="statusDot"></span>
     </div>
     <span class="allai-label">⚡ All AI — 4 Models Side by Side</span>
-    <!-- Settings removed: keys embedded directly into page -->
+    <button class="settings-btn" onclick="openSettings()" title="Settings">⚙</button>
   </div>
 
   <!-- ALL AI GRID (hidden by default) -->
@@ -834,7 +834,60 @@
   </div>
 </div>
 
-<!-- Settings removed: keys are embedded directly into the page -->
+<!-- ===== SETTINGS MODAL ===== -->
+<div class="modal-overlay" id="settingsModal" onclick="if(event.target===this) closeSettings()">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>⚙️ Settings</h2>
+      <button class="modal-close" onclick="closeSettings()" aria-label="Close settings">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="setting-group">
+        <h3>🔑 API Credentials</h3>
+        <div class="desc">Keys are stored locally in your browser (never sent to third parties).</div>
+        
+        <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 12px;">
+          <label for="key_openrouter" style="font-weight: 600; font-size: 13px;">OpenRouter API Key</label>
+          <div style="position: relative; width: 100%;">
+            <input type="password" id="key_openrouter" placeholder="sk-or-v1-..." oninput="saveKeys()" style="width: 100%;">
+            <button type="button" class="key-toggle" onclick="toggleKey('key_openrouter')" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--accent); cursor: pointer; font-size: 11px;">Show/Hide</button>
+          </div>
+        </div>
+
+        <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 12px;">
+          <label for="key_groq" style="font-weight: 600; font-size: 13px;">Groq API Key</label>
+          <div style="position: relative; width: 100%;">
+            <input type="password" id="key_groq" placeholder="gsk_..." oninput="saveKeys()" style="width: 100%;">
+            <button type="button" class="key-toggle" onclick="toggleKey('key_groq')" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--accent); cursor: pointer; font-size: 11px;">Show/Hide</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h3>⚙️ Model Parameters</h3>
+        <div class="desc">Fine-tune your models' response limits and reasoning temperature.</div>
+        
+        <div class="setting-row">
+          <label for="paramTemp">Temperature</label>
+          <input type="range" id="paramTemp" min="0" max="2" step="0.1" value="0.7" oninput="this.nextElementSibling.textContent=this.value; saveKeys()">
+          <span class="val">0.7</span>
+        </div>
+
+        <div class="setting-row">
+          <label for="paramMaxTokens">Max Tokens</label>
+          <input type="range" id="paramMaxTokens" min="256" max="16384" step="256" value="4096" oninput="this.nextElementSibling.textContent=this.value; saveKeys()">
+          <span class="val">4096</span>
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h3>📝 System Prompt</h3>
+        <div class="desc">Specify custom core persona or global instructions for all chats.</div>
+        <input type="text" id="systemPrompt" class="system-prompt" placeholder="You are a helpful AI assistant." oninput="saveKeys()">
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- TOAST CONTAINER -->
 <div class="toast-container" id="toasts"></div>
@@ -1276,9 +1329,15 @@ function appendMsgToDOM(m) {
   return el;
 }
 
-// Settings removed: no-op helpers to avoid runtime errors
-function openSettings() { /* settings removed */ }
-function closeSettings() { /* settings removed */ }
+function openSettings() {
+  document.getElementById('settingsModal').classList.add('open');
+  loadKeys();
+}
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('open');
+  saveKeys();
+  toast('Settings saved successfully.', 'success');
+}
 
 // ===== API PROVIDERS =====
 async function callProvider(provider, model, messages, systemPrompt, temperature, maxTokens, apiKey, signal, onChunk) {
