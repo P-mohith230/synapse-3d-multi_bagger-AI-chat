@@ -1,0 +1,47 @@
+# ==========================================
+# GITHUB ENVIRONMENT CONFIGURATION: .gitignore
+# ==========================================
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor Configurations
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# Secrets and Environment Variables
+.env
+.env.*
+keys.json
+config.private.json
+
+# Local Development & Caching
+.cache/
+.npm/
+.yarn/
+CVS/
+.svn/
+.git/
+.gemini/
+
+# Temporary files & Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Workspace-specific temporary files
+tmp/
+temp/
+scratch/
+C:\Users\pagad\.gemini\antigravity-ide\brain\**
