@@ -1,40 +1,4 @@
-<!--
-========================================================================
-           SYNAPSE-3D: MULTI-MODEL AI CHAT & BENCHMARK ENGINE
-========================================================================
--->
 
-<div align="center">
-
-<!-- Futuristic Glowing Header SVG -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" style="background: radial-gradient(circle at 50% 50%, #1e112a 0%, #0c0513 100%); border-radius: 16px; border: 1px solid rgba(217, 70, 168, 0.25); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);">
-  <defs>
-    <!-- Glowing Neon Gradients -->
-    <linearGradient id="neonGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#be3d94" stop-opacity="1" />
-      <stop offset="50%" stop-color="#d946a8" stop-opacity="1" />
-      <stop offset="100%" stop-color="#f472b6" stop-opacity="1" />
-    </linearGradient>
-    <linearGradient id="cyberCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="1" />
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="1" />
-    </linearGradient>
-    <!-- Shadow & Glow Filters -->
-    <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="10" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-    <filter id="subtleBlur" x="-10%" y="-10%" width="120%" height="120%">
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
 
   <!-- Cybernetic Grid Background -->
   <g stroke="rgba(217, 70, 168, 0.05)" stroke-width="1">
